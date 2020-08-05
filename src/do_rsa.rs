@@ -22,7 +22,6 @@ fn encrypt() {
     let mut rng = OsRng;
     let bits = 2048;
     let private_key = RSAPrivateKey::new(&mut rng,bits).expect("failed to generate a key");
-    println!("{}",private_key);
     let public_key = RSAPublicKey::from(&private_key);
     
      //Encrypt
