@@ -5,7 +5,7 @@ pub fn casesar_cipher() {
     let mut buffer = String::new();
     println!("1.Encrypt\n2.Decrypt\n3.Bruteforce for all Shifts\n4.Help\n0.Return to the Cipher Menu");
     io::stdin().read_line(&mut buffer).unwrap();
-    let mut ch: i32 = buffer.trim().parse().unwrap();
+    let ch: i32 = buffer.trim().parse().unwrap();
     match ch {
         1 => caesar_cipher_encryptor(),
         2 => caesar_cipher_decryptor(),
@@ -25,7 +25,7 @@ fn caesar_cipher_encryptor() {
     let mut temp : u8;
 
     println!("Enter the message to encrypt : ");
-    io::stdin().read_line(&mut message);
+    io::stdin().read_line(&mut message).unwrap();
     message.truncate(message.len()-1);
     println!("Enter the key/shift : ");
     io::stdin().read_line(&mut buffer).unwrap();
@@ -66,10 +66,9 @@ fn caesar_cipher_decryptor() {
     let mut enc = String::new();
     let mut ch : u8;
     let key: u8;
-    let mut temp : u8;
 
     println!("Enter the message to decrypt : ");
-    io::stdin().read_line(&mut message);
+    io::stdin().read_line(&mut message).unwrap();
     message.truncate(message.len()-1);
     println!("Enter the key/shift : ");
     io::stdin().read_line(&mut buffer).unwrap();
@@ -105,13 +104,13 @@ fn caesar_cipher_decryptor() {
 fn caesar_bruteforcer() {
     let mut message = String::new();
     println!("Enter the message to decrypt : ");
-    io::stdin().read_line(&mut message);
+    io::stdin().read_line(&mut message).unwrap();
     message.truncate(message.len()-1);
     let mut enc = String::new();
 
     let mut str_vec : Vec<char> = message.chars().collect();
     
-    for i in 1..26 {
+    for _i in 1..26 {
         for j in str_vec.iter() {
             let mut ch = *j as u8;
 

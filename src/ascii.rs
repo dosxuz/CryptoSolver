@@ -1,7 +1,7 @@
-use std::io::{self,Read};
+use std::io::{self};
 
 pub fn ascii_convert() {
-    let mut choice : i32;
+    let choice : i32;
     let mut buffer = String::new();
     println!("1.Convert to ASCII\n2.Convert from ASCII\n0.Exit");
     io::stdin().read_line(&mut buffer).unwrap();
@@ -17,7 +17,7 @@ pub fn ascii_convert() {
 fn ascii_convert_to(){
     let mut my_str = String::new();
     println!("Enter the text to convert to ascii : ");
-    io::stdin().read_line(&mut my_str);
+    io::stdin().read_line(&mut my_str).unwrap();
     my_str.truncate(my_str.len()-1);
     let str_vec : Vec<char> = my_str.chars().collect();
 
@@ -33,11 +33,11 @@ fn ascii_convert_to(){
 fn ascii_convert_from() {
     let mut my_str = String::new();
     println!("Enter the space separated ascii numbers : ");
-    io::stdin().read_line(&mut my_str);
+    io::stdin().read_line(&mut my_str).unwrap();
     my_str.truncate(my_str.len()-1);
 
-    let mut split = my_str.split(" ");
-    let mut str_vec : Vec<&str> = split.collect();
+    let split = my_str.split(" ");
+    let str_vec : Vec<&str> = split.collect();
 
     for i in str_vec.iter() {
         let ch = *i;

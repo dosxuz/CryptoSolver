@@ -1,5 +1,5 @@
-mod Inverse;
-mod GCD;
+mod inverse;
+mod gcd;
 mod affine;
 mod atbash;
 mod caesar;
@@ -47,7 +47,7 @@ fn main() {
             6 => railfence::railfence_cipher(),
             7 => ascii::ascii_convert(),
             8 => do_rsa::control_function(),
-            9 => base64::testFunc(),
+            9 => base64::base64(),
             _=> println!("Error"),
         }
     }
