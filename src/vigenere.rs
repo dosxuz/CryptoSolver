@@ -60,7 +60,7 @@ fn vigenere_cipher_encryptor() {
     let mut ii : usize = 0;
     let mut jj : usize = 0;
     let mut ch : u8;
-    while (ii<str_len){
+    while ii<str_len{
         while (jj<key_len)&&(ii<str_len){
             ch  = key_vec[jj] as u8;
             ch = ch - 65;
@@ -85,7 +85,7 @@ fn vigenere_cipher_encryptor() {
     c = 0;
     for i in numcipher.iter() {
         ch = *i;
-        if (ch > 25) {
+        if ch > 25 {
             ch = ch-26;
             num_enc.push(ch);
             c = c+1;
@@ -106,7 +106,7 @@ fn vigenere_cipher_encryptor() {
        ch = *i as u8;
        let mut chr = str_vec3[c];
        if (ch >= 65 && ch <= 90)||(ch >= 97 && ch <= 122) {
-           if (ch >= 97 && ch <= 122) {
+           if ch >= 97 && ch <= 122 {
                chr = AsciiExt::to_ascii_lowercase(&chr);
                print!("{}",chr);
                c = c+1;
@@ -166,7 +166,7 @@ fn vigenere_cipher_decryptor() {
     let mut ii : usize = 0;
     let mut jj : usize = 0;
     let mut ch : u8;
-    while (ii<str_len){
+    while ii<str_len{
         while (jj<key_len)&&(ii<str_len){
             ch  = key_vec[jj] as u8;
             ch = ch - 65;
@@ -194,7 +194,7 @@ fn vigenere_cipher_decryptor() {
     c = 0;
     for i in numcipher.iter() {
         ch = *i;
-        if (ch > 25) {
+        if ch > 25 {
             ch = ch-26;
             num_enc.push(ch);
             c = c+1;
@@ -215,7 +215,7 @@ fn vigenere_cipher_decryptor() {
        ch = *i as u8;
        let mut chr = str_vec3[c];
        if (ch >= 65 && ch <= 90)||(ch >= 97 && ch <= 122) {
-           if (ch >= 97 && ch <= 122) {
+           if ch >= 97 && ch <= 122 {
                chr = AsciiExt::to_ascii_lowercase(&chr);
                print!("{}",chr);
                c = c+1;

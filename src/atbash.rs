@@ -39,7 +39,7 @@ fn atbash_cipher_encryptor() {
             }
         }
 
-        if ((integer>=0&&integer<65)||(integer>90&&integer<97)||(integer>122&&integer<=127)) {
+        if (integer>=0&&integer<65)||(integer>90&&integer<97)||(integer>122&&integer<=127) {
             let res = integer as char;
             print!("{}",res);
         }
@@ -72,7 +72,7 @@ fn atbash_cipher_decryptor() {
             }
         }
 
-        if ((integer>=0&&integer<65)||(integer>90&&integer<97)||(integer>122&&integer<=127)) {
+        if (integer>=0&&integer<65)||(integer>90&&integer<97)||(integer>122&&integer<=127) {
             let res = integer as char;
             print!("{}",res);
         }

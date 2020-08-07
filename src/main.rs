@@ -34,7 +34,7 @@ fn main() {
         println!("\n1. Affine Cipher\n\n2. Atbash Cipher\n\n3. Caesar Cipher\n\n4. Vigenere Cipher\n\n5. Morse Code\n\n6. Railfence Cipher\n\n7. Ascii Code Conversion\n\n8. RSA (Encrpyt\\Decrypt)\n\n9. Base64 (Encode\\Decode)\n\n\n0. EXIT\n");
         let mut input = String::new();
         io::stdin().read_line(&mut input).unwrap();
-        let mut choice: i32 = input.trim().parse().unwrap();
+        let choice: i32 = input.trim().parse().unwrap();
         println!("{}",choice);
 
         match choice {

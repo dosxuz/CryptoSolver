@@ -7,7 +7,7 @@ pub fn affine_cipher(){
     println!("1.Encrypt\n2.Decrypt\n3.Help\n0.Return to the Cipher Menu");
 
     io::stdin().read_line(&mut buffer).unwrap();
-    let mut ch: i32 = buffer.trim().parse().unwrap();
+    let ch: i32 = buffer.trim().parse().unwrap();
         match ch {
         1 => affine_cipher_encryptor(),
         2 => affine_cipher_decryptor(),
@@ -20,12 +20,12 @@ pub fn affine_cipher(){
 
 fn affine_cipher_encryptor() {
     let mut buffer = String::new();
-    let (mut i,mut j,mut k,mut gcd,mut alpha,mut beta,mut c) : (i32,i32,i32,i32,i32,i32,i32);
+    let (mut i,mut j,mut k, gcd,mut alpha,mut beta,mut c) : (i32,i32,i32,i32,i32,i32,i32);
     let mut numstr : Vec<i32> = Vec::new();
     let mut numcipher : Vec<i32> = Vec::new();
     let mut my_str = String::new();
     let mut my_str2 = String::new();
-    let mut cipher = String::new();
+    let cipher = String::new();
     let mut my_str3 = String::new();
 
     println!("Enter a string: ");
@@ -94,11 +94,11 @@ fn affine_cipher_encryptor() {
     let mut index : i32 = 0;
     for i in numstr.iter() {
         if *i != -20 {
-            let mut temp = *i;
+            let temp = *i;
             numcipher.push(((alpha*temp)+beta)%26);
             let mut temp1 = numcipher[index as usize] as u8;
             temp1 = temp1+65;
-            let mut c = temp1 as char;
+            let c = temp1 as char;
             my_str3.push(c);
        }
         else {
@@ -112,7 +112,7 @@ fn affine_cipher_encryptor() {
     index = 0;
     for i in str_vec2.iter() {
         let mut temp = *i as i32;
-        let mut temp1 = str_vec3[index as usize];
+        let temp1 = str_vec3[index as usize];
 
         if (temp>=65 && temp<=90) || (temp>=97 && temp<=122) || temp==32 {
             if temp>=97 && temp<=122 {
@@ -130,7 +130,7 @@ fn affine_cipher_encryptor() {
 
 fn affine_cipher_decryptor() {
     let mut buffer = String::new();
-    let (mut i,mut j,mut k,mut gcd,mut alpha,mut beta,mut alphaInverse) : (i32,i32,i32,i32,i32,i32,i32);
+    let (mut i,mut j,mut k, gcd, alpha, beta,mut alphaInverse) : (i32,i32,i32,i32,i32,i32,i32);
     let mut numstr : Vec<i32> = Vec::new();
     let mut numcipher : Vec<i32> = Vec::new();
     let mut my_str = String::new();
