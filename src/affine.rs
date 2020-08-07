@@ -20,16 +20,16 @@ pub fn affine_cipher(){
 
 fn affine_cipher_encryptor() {
     let mut buffer = String::new();
-    let (mut i,mut j,mut k, gcd,mut alpha,mut beta,mut c) : (i32,i32,i32,i32,i32,i32,i32);
+    let (gcd, alpha, beta) : (i32,i32,i32);
     let mut numstr : Vec<i32> = Vec::new();
     let mut numcipher : Vec<i32> = Vec::new();
     let mut my_str = String::new();
-    let mut my_str2 = String::new();
-    let cipher = String::new();
+    let my_str2 : String;
+    // let cipher = String::new();
     let mut my_str3 = String::new();
 
     println!("Enter a string: ");
-    io::stdin().read_line(&mut my_str);
+    io::stdin().read_line(&mut my_str).unwrap();
     my_str.truncate(my_str.len()-1);
     my_str2 = my_str.clone();
 
@@ -111,7 +111,7 @@ fn affine_cipher_encryptor() {
     let str_vec3 : Vec<char> = my_str3.chars().collect();
     index = 0;
     for i in str_vec2.iter() {
-        let mut temp = *i as i32;
+        let temp = *i as i32;
         let temp1 = str_vec3[index as usize];
 
         if (temp>=65 && temp<=90) || (temp>=97 && temp<=122) || temp==32 {
@@ -130,16 +130,16 @@ fn affine_cipher_encryptor() {
 
 fn affine_cipher_decryptor() {
     let mut buffer = String::new();
-    let (mut i,mut j,mut k, gcd, alpha, beta,mut alphaInverse) : (i32,i32,i32,i32,i32,i32,i32);
+    let (gcd, alpha, beta, alpha_inverse) : (i32,i32,i32,i32);
     let mut numstr : Vec<i32> = Vec::new();
     let mut numcipher : Vec<i32> = Vec::new();
     let mut my_str = String::new();
-    let mut my_str2 = String::new();
-    let mut cipher = String::new();
+    let my_str2 : String;
+    // let mut cipher = String::new();
     let mut my_str3 = String::new();
 
     println!("Enter the encrypted string : ");
-    io::stdin().read_line(&mut my_str);
+    io::stdin().read_line(&mut my_str).unwrap();
     my_str.truncate(my_str.len()-1);
     my_str2 = my_str.clone();
     //Converting the string into Upper Case
@@ -176,8 +176,8 @@ fn affine_cipher_decryptor() {
     }
 
     //For Decryption, we need to find the multiplicative inverse of alpha
-    alphaInverse = Inverse::GetMultiplicativeInverse(alpha);
-   //printf("MI=%d\n",alphaInverse);
+    alpha_inverse = Inverse::GetMultiplicativeInverse(alpha);
+   //printf("MI=%d\n",alpha_inverse);
      //Deciphering Process
  	//If numcipher is more than 25 .We need to convert and ensure that lie in between 0 and 25.(indicating Alphabets)
     //A-0,B-1,C-2,.....Y-24,Z-25 
@@ -200,11 +200,11 @@ fn affine_cipher_decryptor() {
     let mut index : i32 = 0;
     for i in numstr.iter() {
         if *i != -20 {
-            let mut temp = *i;
-            numcipher.push(((alphaInverse*temp)+beta)%26);
+            let temp = *i;
+            numcipher.push(((alpha_inverse*temp)+beta)%26);
             let mut temp1 = numcipher[index as usize] as u8;
             temp1 = temp1+65;
-            let mut c = temp1 as char;
+            let c = temp1 as char;
             my_str3.push(c);
        }
         else {
@@ -217,8 +217,8 @@ fn affine_cipher_decryptor() {
     let str_vec3 : Vec<char> = my_str3.chars().collect();
     index = 0;
     for i in str_vec2.iter() {
-        let mut temp = *i as i32;
-        let mut temp1 = str_vec3[index as usize];
+        let temp = *i as i32;
+        let temp1 = str_vec3[index as usize];
 
         if (temp>=65 && temp<=90) || (temp>=97 && temp<=122) || temp==32 {
             if temp>=97 && temp<=122 {

@@ -1,8 +1,7 @@
-use std::ascii::AsciiExt;
 use std::io::{self};
 
 pub fn morse_code() {
-    let mut choice : i32;
+    let choice : i32;
     let mut buffer = String::new();
     println!("1.Encrypt\n2.Decrypt\n3.Help0.Exit");
     io::stdin().read_line(&mut buffer).unwrap();
@@ -17,20 +16,20 @@ pub fn morse_code() {
 }
 
 fn morse_code_encryptor() {
-    let mut alphamorse = vec![".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."];
+    let alphamorse = vec![".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."];
 
-     let mut numorse = vec!["-----",".----","..---","...--","....-",".....","-....","--...","---..","----."];
+     let numorse = vec!["-----",".----","..---","...--","....-",".....","-....","--...","---..","----."];
      let mut my_str = String::new();
-     let mut str_vec : Vec<char> = Vec::new();
+     let mut str_vec : Vec<char>;
      println!("Enter a sentence : ");
-     io::stdin().read_line(&mut my_str);
+     io::stdin().read_line(&mut my_str).unwrap();
      my_str.truncate(my_str.len()-1);
      str_vec = my_str.chars().collect();
 
      for i in str_vec.iter() {
          let mut chr = *i as char;
          if chr!=' '&& !chr.is_digit(10){
-            chr = AsciiExt::to_ascii_uppercase(&chr);
+            chr = chr.to_uppercase().collect::<Vec<_>>()[0];
             let mut ch = chr as usize;
             ch = ch-65;
             print!("{} ",alphamorse[ch]);
@@ -48,30 +47,30 @@ fn morse_code_encryptor() {
 }
 
 fn morse_code_decryptor() {
-    let mut alphamorse = vec![".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."];
-    let mut numorse = vec!["-----",".----","..---","...--","....-",".....","-....","--...","---..","----."];
+    let alphamorse = vec![".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."];
+    let numorse = vec!["-----",".----","..---","...--","....-",".....","-....","--...","---..","----."];
     let mut morsecode = String::new();
     println!("Enter the morse code : ");
-    io::stdin().read_line(&mut morsecode);
+    io::stdin().read_line(&mut morsecode).unwrap();
     morsecode.truncate(morsecode.len()-1);
 
     //For splitting into letters of morse code
 
-    let mut morse : Vec<_> = morsecode.split(' ').collect();
+    let morse : Vec<_> = morsecode.split(' ').collect();
     let mut c : u8;
 
     for i in morse.iter() {
-        let mut word = *i;
+        let word = *i;
         let res = alphamorse.iter().any(|&v| v == word);
         if res {
             let mut j = alphamorse.iter().position(|&v| v == word).unwrap();
             j = j+65;
             c = j as u8;
-            let mut chr = c as char;
+            let chr = c as char;
             print!("{}",chr);
         }
         else {
-            let mut j = numorse.iter().position(|&v| v == word).unwrap();
+            let j = numorse.iter().position(|&v| v == word).unwrap();
             print!("{}",j);
         }
     }

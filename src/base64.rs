@@ -40,6 +40,6 @@ fn decode_wrapper() {
     let bytes = decode(to_decode).unwrap();
     match String::from_utf8(bytes) {
         Ok(decoded_string) => println!("{}", decoded_string),
-        Err(err) => panic!("Failed to decode string from utf8"),
+        Err(_err) => panic!("Failed to decode string from utf8"),
     };
 }

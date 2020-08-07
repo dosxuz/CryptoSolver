@@ -1,8 +1,7 @@
-use std::ascii::AsciiExt;
 use std::io::{self};
 
 pub fn vigenere_cipher() {
-    let mut choice : i32;
+    let choice : i32;
     let mut buffer = String::new();
     println!("1.Encrypt\n2.Decrypt\n3.Help\n0.Exit");
     io::stdin().read_line(&mut buffer).unwrap();
@@ -22,10 +21,9 @@ fn vigenere_cipher_encryptor() {
     let mut numkey : Vec<u8> = Vec::new(); //This stores the key in form of number
     let mut num_enc : Vec<u8> = Vec::new(); //This stores the final ciphered string in the form of number
     let mut my_str = String::new(); //Original string
-    let mut my_str2 = String::new(); //Copy of the original string to be used later on
-    let mut my_str3 = String::new(); //Stores the final form of the string
+    let my_str2 : String; //Copy of the original string to be used later on
     println!("Enter the string to encrypt :  ");
-    io::stdin().read_line(&mut my_str);
+    io::stdin().read_line(&mut my_str).unwrap();
     my_str.truncate(my_str.len()-1);
 
     my_str2 = my_str.clone(); //Copying the original string into the second one
@@ -33,7 +31,7 @@ fn vigenere_cipher_encryptor() {
 
     let str_vec : Vec<char> = my_str.chars().collect(); //Storing the characters in the original string into a vector
     let mut str_vec3 : Vec<char> = Vec::new();
-    let mut str_vec2 : Vec<char> = my_str2.chars().collect(); //Contains the characters of the cloned string
+    let str_vec2 : Vec<char> = my_str2.chars().collect(); //Contains the characters of the cloned string
     //Storing in terms of ascii
 
     for i in str_vec.iter() {
@@ -44,7 +42,7 @@ fn vigenere_cipher_encryptor() {
 
     println!("Enter the key : ");
     let mut key = String::new();
-    io::stdin().read_line(&mut key);
+    io::stdin().read_line(&mut key).unwrap();
     key.truncate(key.len()-1);
     key = key.to_uppercase(); //Converting the key to Capital letters
     println!("The key you entered : {}",key);
@@ -107,7 +105,7 @@ fn vigenere_cipher_encryptor() {
        let mut chr = str_vec3[c];
        if (ch >= 65 && ch <= 90)||(ch >= 97 && ch <= 122) {
            if ch >= 97 && ch <= 122 {
-               chr = AsciiExt::to_ascii_lowercase(&chr);
+               chr = chr.to_lowercase().collect::<Vec<_>>()[0];
                print!("{}",chr);
                c = c+1;
            }
@@ -129,10 +127,9 @@ fn vigenere_cipher_decryptor() {
     let mut numkey : Vec<u8> = Vec::new(); //This stores the key in form of number
     let mut num_enc : Vec<u8> = Vec::new(); //This stores the final ciphered string in the form of number
     let mut my_str = String::new(); //Original string
-    let mut my_str2 = String::new(); //Copy of the original string to be used later on
-    let mut my_str3 = String::new(); //Stores the final form of the string
+    let my_str2 : String; //Copy of the original string to be used later on
     println!("Enter the string to decrypt :  ");
-    io::stdin().read_line(&mut my_str);
+    io::stdin().read_line(&mut my_str).unwrap();
     my_str.truncate(my_str.len()-1);
 
     my_str2 = my_str.clone(); //Copying the original string into the second one
@@ -140,7 +137,7 @@ fn vigenere_cipher_decryptor() {
 
     let str_vec : Vec<char> = my_str.chars().collect(); //Storing the characters in the original string into a vector
     let mut str_vec3 : Vec<char> = Vec::new();
-    let mut str_vec2 : Vec<char> = my_str2.chars().collect(); //Contains the characters of the cloned string
+    let str_vec2 : Vec<char> = my_str2.chars().collect(); //Contains the characters of the cloned string
     //Storing in terms of ascii
 
     for i in str_vec.iter() {
@@ -151,7 +148,7 @@ fn vigenere_cipher_decryptor() {
 
     println!("Enter the key : ");
     let mut key = String::new();
-    io::stdin().read_line(&mut key);
+    io::stdin().read_line(&mut key).unwrap();
     key.truncate(key.len()-1);
     key = key.to_uppercase(); //Converting the key to Capital letters
     println!("The key you entered : {}",key);
@@ -182,9 +179,12 @@ fn vigenere_cipher_decryptor() {
     for k in numstr.iter() {
         ch = *k;
         ch = ch - numkey[c];
-        if ch < 0 {     //Accounting for the negative numbers
-            ch = ch+26;
-        }
+        // removing this comparison
+        // u8 can never be < 0
+        
+        // if ch < 0 {     //Accounting for the negative numbers
+        //     ch = ch+26;
+        // }
         numcipher.push(ch);
         c = c+1;
     }
@@ -216,7 +216,7 @@ fn vigenere_cipher_decryptor() {
        let mut chr = str_vec3[c];
        if (ch >= 65 && ch <= 90)||(ch >= 97 && ch <= 122) {
            if ch >= 97 && ch <= 122 {
-               chr = AsciiExt::to_ascii_lowercase(&chr);
+               chr = chr.to_lowercase().collect::<Vec<_>>()[0];
                print!("{}",chr);
                c = c+1;
            }
