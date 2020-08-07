@@ -1,5 +1,5 @@
-use crate::Inverse;
-use crate::GCD;
+use crate::inverse;
+use crate::gcd;
 use std::io::{self,Read};
 
 pub fn affine_cipher(){
@@ -46,7 +46,7 @@ fn affine_cipher_encryptor() {
         println!("ABE GANDU ALPHA 1 AAR 25 ER MAJHKANE HOBE !!!!!!!!!");
         return ;
     }
-    gcd = GCD::CalcGCD(alpha);
+    gcd = gcd::calc_gcd(alpha);
 
     if gcd != 1 {
         println!("Sorry Try again\n");
@@ -155,7 +155,7 @@ fn affine_cipher_decryptor() {
         println!("ABE GANDU ALPHA 1 AAR 25 ER MAJHKANE HOBE !!!!!!!!!");
         return ;
     }
-    gcd = GCD::CalcGCD(alpha);
+    gcd = gcd::calc_gcd(alpha);
 
     if gcd != 1 {
         println!("Sorry Try again\n");
@@ -176,7 +176,7 @@ fn affine_cipher_decryptor() {
     }
 
     //For Decryption, we need to find the multiplicative inverse of alpha
-    alpha_inverse = Inverse::GetMultiplicativeInverse(alpha);
+    alpha_inverse = inverse::get_multiplicative_inverse(alpha);
    //printf("MI=%d\n",alpha_inverse);
      //Deciphering Process
  	//If numcipher is more than 25 .We need to convert and ensure that lie in between 0 and 25.(indicating Alphabets)

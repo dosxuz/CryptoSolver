@@ -3,7 +3,7 @@ use rsa::{PublicKey,RSAPrivateKey,RSAPublicKey,PaddingScheme};
 use rand::rngs::OsRng;
 
 pub fn control_function() {
-    let mut choice : i32;
+    let choice : i32;
     let mut buffer = String::new();
     println!("1.Encryption\n2.Decryption\n3.Help\n0.Exit");
     io::stdin().read_line(&mut buffer).unwrap();
@@ -21,12 +21,14 @@ fn encrypt() {
     let mut rng = OsRng;
     let bits = 2048;
     let private_key = RSAPrivateKey::new(&mut rng,bits).expect("failed to generate a key");
-    let public_key = RSAPublicKey::from(&private_key);
+    // FIXME: For now, prefixing public_key with an underscore
+    // when it's in use, remove that
+    let _public_key = RSAPublicKey::from(&private_key);
     
      //Encrypt
     let mut my_str = String::new();
     println!("Enter the string to be encrypted");
-    io::stdin().read_line(&mut my_str);
+    io::stdin().read_line(&mut my_str).unwrap();
     my_str.truncate(my_str.len()-1);
     let data = my_str.as_bytes();
     let padding = PaddingScheme::new_pkcs1v15_encrypt();

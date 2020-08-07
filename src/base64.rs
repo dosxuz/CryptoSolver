@@ -10,7 +10,7 @@ pub fn base64() {
     println!("1.Encrypt\n2.Decrypt\n3.Help\n0.Return to the Cipher Menu");
     io::stdin().read_line(&mut buffer).unwrap();
     
-    let mut ch: i32 = buffer.trim().parse().unwrap();
+    let ch: i32 = buffer.trim().parse().unwrap();
         match ch {
         0 => println!("Returning..."),
         1 => encode_wrapper(),

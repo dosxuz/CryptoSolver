@@ -20,7 +20,7 @@ fn morse_code_encryptor() {
 
      let numorse = vec!["-----",".----","..---","...--","....-",".....","-....","--...","---..","----."];
      let mut my_str = String::new();
-     let mut str_vec : Vec<char>;
+     let str_vec : Vec<char>;
      println!("Enter a sentence : ");
      io::stdin().read_line(&mut my_str).unwrap();
      my_str.truncate(my_str.len()-1);

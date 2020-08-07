@@ -1,5 +1,5 @@
-mod Inverse;
-mod GCD;
+mod inverse;
+mod gcd;
 mod affine;
 mod atbash;
 mod caesar;
