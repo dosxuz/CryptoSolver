@@ -1,5 +1,4 @@
-use std::ascii::AsciiExt;
-use std::io::{self,Read};
+use std::io::{self};
 
 pub fn railfence_cipher() {
     let mut choice : i32;

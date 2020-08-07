@@ -3,9 +3,9 @@
 use ::base64;
 
 use base64::{encode, decode};
-use std::io::{self, Read};
+use std::io::{self};
 
-pub fn testFunc() {
+pub fn base64() {
     let mut buffer = String::new();
     println!("1.Encrypt\n2.Decrypt\n3.Help\n0.Return to the Cipher Menu");
     io::stdin().read_line(&mut buffer).unwrap();
