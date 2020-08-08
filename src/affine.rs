@@ -22,7 +22,6 @@ fn affine_cipher_encryptor() {
     let mut buffer = String::new();
     let (gcd, alpha, beta) : (i32,i32,i32);
     let mut numstr : Vec<i32> = Vec::new();
-    let mut numcipher : Vec<i32> = Vec::new();
     let mut my_str = String::new();
     let my_str2 : String;
     // let cipher = String::new();
@@ -79,9 +78,9 @@ fn affine_cipher_encryptor() {
         }
 
         else{
-            let mut integer = *i as i32;
-            integer = integer-20;
-            numstr.push(integer);
+            //let mut integer = *i as i32;
+            //integer = integer-20;
+            numstr.push(-20);
         }
     }
 
@@ -94,12 +93,18 @@ fn affine_cipher_encryptor() {
     let mut index : i32 = 0;
     for i in numstr.iter() {
         if *i != -20 {
+            /*
             let temp = *i;
             numcipher.push(((alpha*temp)+beta)%26);
             let mut temp1 = numcipher[index as usize] as u8;
             temp1 = temp1+65;
             let c = temp1 as char;
             my_str3.push(c);
+            */
+            let mut temp = *i;
+            temp = ((alpha*temp)+beta)%26;
+            let temp1 = (temp+65) as u8;
+            my_str3.push(temp1 as char);
        }
         else {
             my_str3.push(' ');
