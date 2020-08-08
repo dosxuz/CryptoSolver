@@ -132,7 +132,6 @@ fn affine_cipher_decryptor() {
     let mut buffer = String::new();
     let (gcd, alpha, beta, alpha_inverse) : (i32,i32,i32,i32);
     let mut numstr : Vec<i32> = Vec::new();
-    let mut numcipher : Vec<i32> = Vec::new();
     let mut my_str = String::new();
     let my_str2 : String;
     // let mut cipher = String::new();
@@ -192,20 +191,33 @@ fn affine_cipher_decryptor() {
         }
 
         else{
-            let mut integer = *i as i32;
-            integer = integer-20;
-            numstr.push(integer);
+            //let mut integer = *i as i32;
+            //integer = 32;
+            numstr.push(-20);
         }
     }
+
+    println!("Decrypted Affine Cipher text is : \n");
+
     let mut index : i32 = 0;
     for i in numstr.iter() {
         if *i != -20 {
+            /*
             let temp = *i;
-            numcipher.push(((alpha_inverse*temp)+beta)%26);
+            numcipher.push(((alpha_inverse*temp)-beta)%26);
             let mut temp1 = numcipher[index as usize] as u8;
             temp1 = temp1+65;
             let c = temp1 as char;
             my_str3.push(c);
+            */
+            let mut temp = *i;
+            temp = (alpha_inverse*(temp-beta))%26;
+            if temp < 0 {
+                temp = temp+26;
+            }
+            let mut temp1 = temp as u8;
+            temp1 = temp1+65;
+            my_str3.push(temp1 as char)
        }
         else {
             my_str3.push(' ');
@@ -217,7 +229,7 @@ fn affine_cipher_decryptor() {
     let str_vec3 : Vec<char> = my_str3.chars().collect();
     index = 0;
     for i in str_vec2.iter() {
-        let temp = *i as i32;
+        let temp = *i as u8;
         let temp1 = str_vec3[index as usize];
 
         if (temp>=65 && temp<=90) || (temp>=97 && temp<=122) || temp==32 {
@@ -227,8 +239,8 @@ fn affine_cipher_decryptor() {
             else {
                 print!("{}",temp1);
             }
+            index = index + 1;
         }
-        index = index+1;
     }
     println!("\n");
 
