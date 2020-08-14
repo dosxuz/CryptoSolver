@@ -50,5 +50,9 @@ fn main() {
             9 => base64::base64(),
             _=> println!("Error"),
         }
-    }
+        let mut wait = String::new();
+        println!("Press Enter to continue");
+        io::stdin().read_line(&mut wait).unwrap();
+        print!("\x1B[2J\x1B[1;1H");
+   }
 }
